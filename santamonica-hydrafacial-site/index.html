@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hydrafacial — Santa Monica Salon</title>
+<meta name="description" content="Hydrafacial at Santa Monica Salon, Kuwait. Single session 30 KD or 3 sessions for 80 KD. Book now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000;
+    --white:#fff;
+    --smoke:rgba(255,255,255,.62);
+    --line:rgba(255,255,255,.24);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--black);
+    color:var(--white);
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .hero{position:fixed;inset:0;overflow:hidden}
+  .hero video{
+    position:absolute;inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1.4s ease;
+  }
+  .hero video.on{opacity:1}
+  .veil{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.66) 0%, rgba(0,0,0,.10) 32%, rgba(0,0,0,.14) 52%, rgba(0,0,0,.88) 100%);
+    pointer-events:none;
+  }
+
+  .ui{
+    position:fixed;inset:0;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:space-between;
+    text-align:center;
+    padding:calc(env(safe-area-inset-top) + 22px) 22px calc(env(safe-area-inset-bottom) + 20px);
+  }
+
+  .top{display:flex;flex-direction:column;align-items:center;gap:10px;animation:fade 1s .15s ease both}
+  .top img{width:54px;height:auto}
+  .top h1{
+    font-family:'Marcellus',serif;
+    font-weight:400;font-size:.92rem;
+    letter-spacing:.46em;text-indent:.46em;
+    text-transform:uppercase;
+  }
+
+  .foot{width:100%;max-width:360px;display:flex;flex-direction:column;gap:14px;animation:fade 1s .45s ease both}
+  .service{
+    font-family:'Marcellus',serif;
+    font-size:clamp(2rem,9vw,2.6rem);
+    font-weight:400;line-height:1.1;
+  }
+  .service-sub{
+    font-size:.72rem;font-weight:300;
+    letter-spacing:.3em;text-indent:.3em;
+    text-transform:uppercase;color:var(--smoke);
+    margin-bottom:8px;
+  }
+
+  .opt{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;
+    padding:17px 20px;
+    text-decoration:none;
+    transition:transform .15s ease, opacity .2s ease;
+  }
+  .opt:active{transform:scale(.98)}
+  .opt:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+  .opt .l{text-align:left}
+  .opt .name{font-size:.94rem;font-weight:600;letter-spacing:.04em}
+  .opt .note{font-size:.72rem;font-weight:300;margin-top:2px}
+  .opt .price{font-family:'Marcellus',serif;font-size:1.5rem;white-space:nowrap}
+
+  .opt.single{
+    border:1px solid var(--line);
+    color:var(--white);
+    background:rgba(0,0,0,.3);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+  .opt.single .note{color:var(--smoke)}
+
+  .opt.pack{
+    background:var(--white);
+    color:var(--black);
+    position:relative;
+  }
+  .opt.pack .note{color:rgba(0,0,0,.6)}
+  .save{
+    position:absolute;
+    top:-11px;right:14px;
+    background:var(--black);
+    color:var(--white);
+    border:1px solid var(--white);
+    font-size:.6rem;font-weight:600;
+    letter-spacing:.14em;text-transform:uppercase;
+    padding:4px 10px;border-radius:100px;
+  }
+
+  .wa{
+    position:fixed;
+    right:16px;
+    bottom:calc(env(safe-area-inset-bottom) + 16px);
+    display:flex;align-items:center;gap:8px;
+    padding:10px 15px;
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:100px;
+    background:rgba(0,0,0,.4);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    color:var(--white);
+    text-decoration:none;
+    font-size:.64rem;font-weight:400;
+    letter-spacing:.16em;text-transform:uppercase;
+    z-index:5;
+    animation:fade 1s .8s ease both;
+  }
+  .wa:active{opacity:.8}
+  .wa svg{width:14px;height:14px;flex:none}
+
+  .cities{
+    margin-top:4px;
+    font-size:.6rem;font-weight:300;
+    letter-spacing:.44em;text-indent:.44em;
+    text-transform:uppercase;color:var(--smoke);
+  }
+
+  /* leave room so WhatsApp pill doesn't overlap the cards */
+  .foot{margin-bottom:46px}
+
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .top,.foot,.wa{animation:none}
+    .hero video{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero" aria-hidden="true">
+  <video id="vA" muted playsinline preload="auto"></video>
+  <video id="vB" muted playsinline preload="auto"></video>
+  <div class="veil"></div>
+</div>
+
+<main class="ui">
+  <header class="top">
+    <img src="/logo-white.png" alt="Santa Monica rose logo">
+    <h1>Santa Monica</h1>
+  </header>
+
+  <div class="foot">
+    <div>
+      <p class="service">Hydrafacial</p>
+      <p class="service-sub">Deep cleanse &middot; Instant glow &middot; No downtime</p>
+    </div>
+
+    <a class="opt single" href="https://www.fresha.com" target="_blank" rel="noopener">
+      <span class="l">
+        <span class="name">Single Session</span><br>
+        <span class="note">45 minutes</span>
+      </span>
+      <span class="price">30 KD</span>
+    </a>
+
+    <a class="opt pack" href="https://www.fresha.com" target="_blank" rel="noopener">
+      <span class="save">Save 10 KD</span>
+      <span class="l">
+        <span class="name">3 Sessions</span><br>
+        <span class="note">26.7 KD per session</span>
+      </span>
+      <span class="price">80 KD</span>
+    </a>
+
+    <p class="cities">Kuwait &middot; Dubai</p>
+  </div>
+</main>
+
+<a class="wa" href="https://wa.me/965XXXXXXXX?text=Hi%20Santa%20Monica!" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 004.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.83 14.12c-.25.7-1.45 1.33-2 1.38-.51.05-1.16.07-1.87-.12-.43-.14-.99-.32-1.7-.63-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.08 0-1.47.77-2.19 1.04-2.49.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.07.92 2.22.08.15.13.33.03.53-.1.2-.15.33-.3.5-.15.18-.31.4-.45.53-.15.15-.3.31-.13.61.18.3.79 1.3 1.69 2.11 1.16 1.03 2.14 1.35 2.44 1.5.3.15.48.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.67-.15.28.1 1.74.82 2.04.97.3.15.5.22.57.35.08.13.08.73-.17 1.43z"/></svg>
+  Contact us
+</a>
+
+<script>
+(function(){
+  var srcs = ["/media/c2.mp4",
+    "/media/c1.mp4",
+    "/media/c3.mp4"];
+  var vids = [document.getElementById('vA'), document.getElementById('vB')];
+  var idx = 0, active = 0;
+
+  function load(v, i){ v.src = srcs[i]; v.load(); }
+
+  function play(slot){
+    var v = vids[slot];
+    var p = v.play();
+    if (p && p.catch) p.catch(function(){});
+    v.classList.add('on');
+    vids[1-slot].classList.remove('on');
+  }
+
+  function next(){
+    idx = (idx + 1) % srcs.length;
+    var slot = 1 - active;
+    load(vids[slot], idx);
+    vids[slot].onended = next;
+    var started = false;
+    vids[slot].oncanplay = function(){
+      if (started) return; started = true;
+      active = slot;
+      play(slot);
+    };
+  }
+
+  load(vids[0], 0);
+  vids[0].onended = next;
+  vids[0].oncanplay = function once(){
+    vids[0].oncanplay = null;
+    play(0);
+  };
+
+  document.addEventListener('touchstart', function t(){
+    vids[active].play().catch(function(){});
+    document.removeEventListener('touchstart', t);
+  }, {once:true});
+})();
+</script>
+
+</body>
+</html>
